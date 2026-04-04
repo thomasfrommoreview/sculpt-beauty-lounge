@@ -118,12 +118,12 @@ const testimonials = [
 ];
 
 const hours = [
-  { day: "Monday", time: "By Appointment" },
-  { day: "Tuesday", time: "By Appointment" },
-  { day: "Wednesday", time: "By Appointment" },
-  { day: "Thursday", time: "By Appointment" },
-  { day: "Friday", time: "By Appointment" },
-  { day: "Saturday", time: "By Appointment" },
+  { day: "Monday", time: "10:00 AM - 7:00 PM" },
+  { day: "Tuesday", time: "11:00 AM - 7:00 PM" },
+  { day: "Wednesday", time: "10:00 AM - 7:00 PM" },
+  { day: "Thursday", time: "10:00 AM - 7:00 PM" },
+  { day: "Friday", time: "11:00 AM - 7:00 PM" },
+  { day: "Saturday", time: "Closed" },
   { day: "Sunday", time: "Closed" },
 ];
 
