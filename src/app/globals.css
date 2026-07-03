@@ -1,30 +1,119 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Brand Colors */
-  --color-cream: #FAF7F2;
-  --color-warm-white: #FFFDFB;
-  --color-blush: #E8D5C4;
-  --color-rose: #C9A68E;
-  --color-taupe: #8C7A6B;
-  --color-charcoal: #2C2825;
-  --color-soft-black: #1A1715;
-  --color-gold: #B8976A;
+  /* ── Dark (primary) ── */
+  --color-noir: #0e0e10; /* primary background */
+  --color-noir-2: #121216; /* alternate band */
+  --color-noir-3: #17171c; /* cards */
+  --color-noir-4: #1e1e24; /* elevated / hover */
+  --color-line: #2a2620; /* warm hairline on dark */
 
-  /* Font families */
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Montserrat', system-ui, sans-serif;
+  --color-ink: #f4f1eb; /* primary text on dark */
+  --color-mist: #c7c1b6; /* body text on dark */
+  --color-mist-2: #b5aea3; /* muted labels on dark */
+
+  --color-gold: #c9a24b; /* primary accent (AA on dark) */
+  --color-gold-soft: #e3c77e; /* large display / hover */
+  --color-champagne: #e8dcc5; /* decorative */
+
+  /* ── Ivory (one light band) ── */
+  --color-ivory: #f5f1ea;
+  --color-ivory-ink: #1a1815;
+  --color-ivory-body: #5e574b;
+  --color-gold-deep: #9a7b2e; /* large-text gold on ivory */
+
+  /* ── Fonts (wired via next/font variables in layout) ── */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-montserrat), system-ui, sans-serif;
+
+  /* ── Named aspect utilities (Tailwind v4 arbitrary aspect is flaky) ── */
+  --aspect-portrait: 4 / 5;
+  --aspect-tall: 3 / 4;
+  --aspect-square: 1 / 1;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--color-ink);
+    background-color: var(--color-noir);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-noir);
+  }
 }
 
-body {
-  font-family: var(--font-body);
-  font-weight: 300;
-  color: var(--color-charcoal);
-  background-color: var(--color-cream);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .aspect-portrait {
+    aspect-ratio: 4 / 5;
+  }
+  .aspect-tall {
+    aspect-ratio: 3 / 4;
+  }
+  .aspect-square-img {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Letterspaced eyebrow label */
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* Gold hairline rule */
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-gold),
+      transparent
+    );
+  }
+
+  /* Scroll reveal (paired with Reveal component) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* No-JS: content must never stay hidden */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

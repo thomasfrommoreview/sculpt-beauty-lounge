@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.design-final/
+_capture.mjs
+_herotop.mjs
+.design-tools.log
